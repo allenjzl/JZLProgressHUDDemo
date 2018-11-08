@@ -78,11 +78,11 @@
             
         case 8:{// 自定义动画
             NSMutableArray *imageArr = [NSMutableArray array];
-            for (int i =1; i <= 22; i++) {
-                [imageArr addObject:[NSString stringWithFormat:@"loading_%d",i]];
+            for (int i =1; i <= 4; i++) {
+                [imageArr addObject:[NSString stringWithFormat:@"0%d.png",i]];
             }
             //如果不需要文字,msg传nil即可
-            [JZLProgressHUD showCustomAnimationWithMsg:@"加载中..." withImageArry:imageArr inview:self.view];
+            [JZLProgressHUD showCustomAnimationWithMsg:@"loading" withImageArry:imageArr inview:self.view];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [JZLProgressHUD hide];
             });

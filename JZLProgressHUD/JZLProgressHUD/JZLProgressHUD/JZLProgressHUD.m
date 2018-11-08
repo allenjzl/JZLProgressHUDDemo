@@ -56,7 +56,7 @@
     }
     imgView.animationImages = imageArray;
     [imgView setAnimationRepeatCount:0];
-    [imgView setAnimationDuration:(imgArry.count + 1) * 0.075];
+    [imgView setAnimationDuration:imgArry.count  * 0.25];
     [imgView startAnimating];
     [self show:msg inView:view hudMode:JZLProgressHUDModeCustomAnimation customImgView:imgView];
 }
