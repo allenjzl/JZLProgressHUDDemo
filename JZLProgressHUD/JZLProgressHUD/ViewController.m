@@ -34,33 +34,33 @@
 - (void)btnAction:(UIButton *)sender {
     switch (sender.tag) {
         case 0:// 显示提示文字
-            [JZLProgressHUD showMessage:@"Hello World" inView:self.view];
+            [JZLProgressHUD showMessage:@"Hello World" onView:self.view];
             break;
             
         case 1:// 显示提示文字(window上)
-            [JZLProgressHUD showMessage:@"Hello World" inView:nil];
+            [JZLProgressHUD showMessage:@"Hello World" onView:nil];
             break;
             
         case 2:// 显示提示文字(自定义消失时间)
-            [JZLProgressHUD showMessage:@"Hello World" inView:self.view afterDelayTime:3];
+            [JZLProgressHUD showMessage:@"Hello World" onView:self.view afterDelayTime:3];
             break;
             
         case 3:// 显示菊花(加载中)
-            [JZLProgressHUD showLoadingWithMsg:@"加载中..." inView:self.view];
+            [JZLProgressHUD showLoadingWithMsg:@"加载中..." onView:self.view];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [JZLProgressHUD hide];
             });
             break;
             
         case 4:// 显示环形(加载中)
-            [JZLProgressHUD showCircleLoadingWithMsg:nil inView:self.view];
+            [JZLProgressHUD showCircleLoadingWithMsg:nil onView:self.view];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [JZLProgressHUD hide];
             });
             break;
             
         case 5:{// 下载进度
-            self.hud = [JZLProgressHUD showDownloadProgressWithMsg:@"下载中..." inView:self.view];
+            self.hud = [JZLProgressHUD showDownloadProgressWithMsg:@"下载中..." onView:self.view];
             self.progress = 0.0f;
            self.timer =  [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(downloadProgress) userInfo:nil repeats:YES];
             
@@ -68,11 +68,11 @@
             break;
             
         case 6:// 成功
-            [JZLProgressHUD showSuccessWithMsg:@"加载成功" inview:self.view];
+            [JZLProgressHUD showSuccessWithMsg:@"加载成功" onView:self.view];
             break;
             
         case 7:// 失败
-            [JZLProgressHUD showFailWithMsg:@"加载失败" inview:self.view];
+            [JZLProgressHUD showFailWithMsg:@"加载失败" onView:self.view];
 
             break;
             
@@ -82,7 +82,7 @@
                 [imageArr addObject:[NSString stringWithFormat:@"0%d.png",i]];
             }
             //如果不需要文字,msg传nil即可
-            [JZLProgressHUD showCustomAnimationWithMsg:@"loading" withImageArry:imageArr inview:self.view];
+            [JZLProgressHUD showCustomAnimationWithMsg:@"loading" withImageArry:imageArr onView:self.view];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [JZLProgressHUD hide];
             });
@@ -90,7 +90,7 @@
             break;
             
         case 9:{// 自定义图片 如果不需要文字,msg传nil即可
-            [JZLProgressHUD showMsg:@"自定义图片" imageName:@"success" inview:self.view];
+            [JZLProgressHUD showMsg:@"自定义图片" imageName:@"success" onView:self.view];
         }
             break;
             

@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param msg msg
  @param view view
  */
-+(void)showMessage:(NSString *)msg inView:(UIView *)view;
++(void)showMessage:(NSString *)msg onView:(UIView *)view;
 /**
  只显示文字,自己设定显示时间
 
@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param view view
  @param delay 显示时间
  */
-+(void)showMessage:(NSString *)msg inView:(UIView *)view afterDelayTime:(NSTimeInterval)delay;
++(void)showMessage:(NSString *)msg onView:(UIView *)view afterDelayTime:(NSTimeInterval)delay;
 
 /**
  成功hud
@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param msg msg
  @param view view
  */
-+(void)showSuccessWithMsg:(NSString *)msg inview:(UIView *)view;
++(void)showSuccessWithMsg:(NSString *)msg onView:(UIView *)view;
 
 /**
  失败hud
@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param msg msg
  @param view view
  */
-+(void)showFailWithMsg:(NSString *)msg inview:(UIView *)view;
++(void)showFailWithMsg:(NSString *)msg onView:(UIView *)view;
 
 /**
  显示自定义图片和文字
@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param imageName 图片名称
  @param view view
  */
-+(void)showMsg:(NSString *)msg imageName:(NSString *)imageName inview:(UIView *)view;
++(void)showMsg:(NSString *)msg imageName:(NSString *)imageName onView:(UIView *)view;
 
 /**
  显示序列帧动画
@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param imgArry 序列帧动画数组
  @param view view
  */
-+(void)showCustomAnimationWithMsg:(NSString *)msg withImageArry:(NSArray *)imgArry inview:(UIView *)view;
++(void)showCustomAnimationWithMsg:(NSString *)msg withImageArry:(NSArray *)imgArry onView:(UIView *)view;
 
 
 /**
@@ -85,7 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param view view
  @return hud
  */
-+(MBProgressHUD *)showDownloadProgressWithMsg:(NSString *)msg inView:(UIView *)view;
++(MBProgressHUD *)showDownloadProgressWithMsg:(NSString *)msg onView:(UIView *)view;
 
 /**
  显示加载中菊花
@@ -93,7 +93,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param msg msg
  @param view view
  */
-+(void)showLoadingWithMsg:(NSString *)msg inView:(UIView *)view;
++(void)showLoadingWithMsg:(NSString *)msg onView:(UIView *)view;
 
 /**
  显示加载中环形
@@ -101,7 +101,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param msg msg
  @param view view
  */
-+(void)showCircleLoadingWithMsg:(NSString *)msg inView:(UIView *)view;
++(void)showCircleLoadingWithMsg:(NSString *)msg onView:(UIView *)view;
 
 /**
  隐藏

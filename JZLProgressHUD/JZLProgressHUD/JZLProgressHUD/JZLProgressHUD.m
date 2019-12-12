@@ -21,34 +21,34 @@
 }
 
 
-+(void)showMessage:(NSString *)msg inView:(UIView *)view{
-    [self show:msg inView:view hudMode:JZLProgressHUDModeTextOnly];
++(void)showMessage:(NSString *)msg onView:(UIView *)view{
+    [self show:msg onView:view hudMode:JZLProgressHUDModeTextOnly];
     [[JZLProgressHUD shareinstance].hud hideAnimated:YES afterDelay:1.5];
 }
 
 
-+(void)showMessage:(NSString *)msg inView:(UIView *)view afterDelayTime:(NSTimeInterval)delay{
-    [self show:msg inView:view hudMode:JZLProgressHUDModeTextOnly];
++(void)showMessage:(NSString *)msg onView:(UIView *)view afterDelayTime:(NSTimeInterval)delay{
+    [self show:msg onView:view hudMode:JZLProgressHUDModeTextOnly];
     [[JZLProgressHUD shareinstance].hud hideAnimated:YES afterDelay:delay];
 }
 
-+(void)showSuccessWithMsg:(NSString *)msg inview:(UIView *)view{
-    [self show:msg inView:view hudMode:JZLProgressHUDModeSuccess];
++(void)showSuccessWithMsg:(NSString *)msg onView:(UIView *)view{
+    [self show:msg onView:view hudMode:JZLProgressHUDModeSuccess];
     [[JZLProgressHUD shareinstance].hud hideAnimated:YES afterDelay:1.5];
 }
 
-+(void)showFailWithMsg:(NSString *)msg inview:(UIView *)view{
-    [self show:msg inView:view hudMode:JZLProgressHUDModeFail];
++(void)showFailWithMsg:(NSString *)msg onView:(UIView *)view{
+    [self show:msg onView:view hudMode:JZLProgressHUDModeFail];
     [[JZLProgressHUD shareinstance].hud hideAnimated:YES afterDelay:1.5];
 }
 
-+(void)showMsg:(NSString *)msg imageName:(NSString *)imageName inview:(UIView *)view{
++(void)showMsg:(NSString *)msg imageName:(NSString *)imageName onView:(UIView *)view{
     UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
-    [self show:msg inView:view hudMode:JZLProgressHUDModeCustomerImage customImgView:imgView];
+    [self show:msg onView:view hudMode:JZLProgressHUDModeCustomerImage customImgView:imgView];
     [[JZLProgressHUD shareinstance].hud hideAnimated:YES afterDelay:1.5];
 }
 
-+(void)showCustomAnimationWithMsg:(NSString *)msg withImageArry:(NSArray *)imgArry inview:(UIView *)view{
++(void)showCustomAnimationWithMsg:(NSString *)msg withImageArry:(NSArray *)imgArry onView:(UIView *)view{
     UIImageView *imgView = [[UIImageView alloc] init];
     NSMutableArray *imageArray = [NSMutableArray array];
     for (NSString *imageString in imgArry) {
@@ -58,10 +58,10 @@
     [imgView setAnimationRepeatCount:0];
     [imgView setAnimationDuration:imgArry.count  * 0.25];
     [imgView startAnimating];
-    [self show:msg inView:view hudMode:JZLProgressHUDModeCustomAnimation customImgView:imgView];
+    [self show:msg onView:view hudMode:JZLProgressHUDModeCustomAnimation customImgView:imgView];
 }
 
-+(MBProgressHUD *)showDownloadProgressWithMsg:(NSString *)msg inView:(UIView *)view{
++(MBProgressHUD *)showDownloadProgressWithMsg:(NSString *)msg onView:(UIView *)view{
     if (view == nil) view = (UIView*)[UIApplication sharedApplication].delegate.window;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
     hud.mode = MBProgressHUDModeAnnularDeterminate;
@@ -69,12 +69,12 @@
     return hud;
 }
 
-+(void)showLoadingWithMsg:(NSString *)msg inView:(UIView *)view{
-    [self show:msg inView:view hudMode:JZLProgressHUDModeLoading];
++(void)showLoadingWithMsg:(NSString *)msg onView:(UIView *)view{
+    [self show:msg onView:view hudMode:JZLProgressHUDModeLoading];
 }
 
-+(void)showCircleLoadingWithMsg:(NSString *)msg inView:(UIView *)view{
-    [self show:msg inView:view hudMode:JZLProgressHUDModeCircle];
++(void)showCircleLoadingWithMsg:(NSString *)msg onView:(UIView *)view{
+    [self show:msg onView:view hudMode:JZLProgressHUDModeCircle];
     
 }
 
@@ -89,12 +89,12 @@
 
 
 
-+ (void)show:(NSString *)msg inView:(nullable UIView *)view hudMode:(JZLProgressHUDMode)hudMode  {
-    [self show:msg inView:view hudMode:hudMode customImgView:nil];
++ (void)show:(NSString *)msg onView:(nullable UIView *)view hudMode:(JZLProgressHUDMode)hudMode  {
+    [self show:msg onView:view hudMode:hudMode customImgView:nil];
     
 }
 
-+ (void)show:(NSString *)msg inView:(UIView *)view hudMode:(JZLProgressHUDMode)hudMode customImgView:(UIImageView *)customImgView{
++ (void)show:(NSString *)msg onView:(UIView *)view hudMode:(JZLProgressHUDMode)hudMode customImgView:(UIImageView *)customImgView{
     // 如果当前存在,则先消失
     if ([JZLProgressHUD shareinstance].hud != nil) {
         [[JZLProgressHUD shareinstance].hud hideAnimated:YES];
