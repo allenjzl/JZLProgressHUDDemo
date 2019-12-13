@@ -34,33 +34,38 @@
 - (void)btnAction:(UIButton *)sender {
     switch (sender.tag) {
         case 0:// 显示提示文字
-            [JZLProgressHUD showMessage:@"Hello World" onView:self.view];
+//            [JZLProgressHUD showMsg:@"Hello World" onView:self.view];
+            [JZLProgressHUD showMsg:@"123"];
             break;
             
         case 1:// 显示提示文字(window上)
-            [JZLProgressHUD showMessage:@"Hello World" onView:nil];
+            [JZLProgressHUD showMsg:@"Hello World" onView:nil];
             break;
             
         case 2:// 显示提示文字(自定义消失时间)
-            [JZLProgressHUD showMessage:@"Hello World" onView:self.view afterDelayTime:3];
+//            [JZLProgressHUD showMsg:@"Hello World" onView:self.view afterDelayTime:3];
+            [JZLProgressHUD showMsg:@"Hello World"];
             break;
             
         case 3:// 显示菊花(加载中)
-            [JZLProgressHUD showLoadingWithMsg:@"加载中..." onView:self.view];
+//            [JZLProgressHUD showLoadingWithMsg:@"加载中..." onView:self.view];
+             [JZLProgressHUD showLoadingWithMsg:@"加载中..."];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [JZLProgressHUD hide];
             });
             break;
             
         case 4:// 显示环形(加载中)
-            [JZLProgressHUD showCircleLoadingWithMsg:nil onView:self.view];
+//            [JZLProgressHUD showCircleLoadingWithMsg:nil onView:self.view];
+            [JZLProgressHUD showCircleLoadingWithMsg:nil];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [JZLProgressHUD hide];
             });
             break;
             
         case 5:{// 下载进度
-            self.hud = [JZLProgressHUD showDownloadProgressWithMsg:@"下载中..." onView:self.view];
+//            self.hud = [JZLProgressHUD showProgressWithMsg:@"下载中..." onView:self.view];
+            self.hud = [JZLProgressHUD showProgressWithMsg:@"下载中..."];
             self.progress = 0.0f;
            self.timer =  [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(downloadProgress) userInfo:nil repeats:YES];
             
@@ -68,11 +73,13 @@
             break;
             
         case 6:// 成功
-            [JZLProgressHUD showSuccessWithMsg:@"加载成功" onView:self.view];
+//            [JZLProgressHUD showSuccessWithMsg:@"加载成功" onView:self.view];
+             [JZLProgressHUD showSuccessWithMsg:@"加载成功"];
             break;
             
         case 7:// 失败
-            [JZLProgressHUD showFailWithMsg:@"加载失败" onView:self.view];
+//            [JZLProgressHUD showFailWithMsg:@"加载失败" onView:self.view];
+            [JZLProgressHUD showFailWithMsg:@"加载失败"];
 
             break;
             

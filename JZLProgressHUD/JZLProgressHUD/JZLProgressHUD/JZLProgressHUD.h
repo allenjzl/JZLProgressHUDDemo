@@ -24,88 +24,99 @@ typedef NS_ENUM(NSInteger, JZLProgressHUDMode){
 
 NS_ASSUME_NONNULL_BEGIN
 
+
 @interface JZLProgressHUD : NSObject
 @property (nonatomic,strong, nullable) MBProgressHUD  *hud;
-
-/**
- 只显示文字,默认1.5s后消失
-
- @param msg msg
- @param view view
- */
-+(void)showMessage:(NSString *)msg onView:(UIView *)view;
-/**
- 只显示文字,自己设定显示时间
-
- @param msg msg
- @param view view
- @param delay 显示时间
- */
-+(void)showMessage:(NSString *)msg onView:(UIView *)view afterDelayTime:(NSTimeInterval)delay;
-
-/**
- 成功hud
-
- @param msg msg
- @param view view
- */
-+(void)showSuccessWithMsg:(NSString *)msg onView:(UIView *)view;
-
-/**
- 失败hud
-
- @param msg msg
- @param view view
- */
-+(void)showFailWithMsg:(NSString *)msg onView:(UIView *)view;
-
-/**
- 显示自定义图片和文字
-
- @param msg msg
- @param imageName 图片名称
- @param view view
- */
-+(void)showMsg:(NSString *)msg imageName:(NSString *)imageName onView:(UIView *)view;
-
-/**
- 显示序列帧动画
-
- @param msg msg
- @param imgArry 序列帧动画数组
- @param view view
- */
-+(void)showCustomAnimationWithMsg:(NSString *)msg withImageArry:(NSArray *)imgArry onView:(UIView *)view;
+/** 单例 */
++(instancetype)shareinstance;
 
 
-/**
- 定义加载进度
+/// 只显示文字(显示在window上)
+/// @param msg 要显示的文字
++(void)showMsg:(nullable NSString *)msg;
+/// 只显示文字
+/// @param msg 要显示的文字
+/// @param view   要显示的view
++(void)showMsg:(nullable NSString *)msg onView:(nullable UIView *)view;
 
- @param msg msg
- @param view view
- @return hud
- */
-+(MBProgressHUD *)showDownloadProgressWithMsg:(NSString *)msg onView:(UIView *)view;
 
-/**
- 显示加载中菊花
+/// 显示文字,自定义消失时间(显示在window上)
+/// @param msg 要显示的文字
+/// @param delay 时间
++(void)showMsg:(nullable NSString *)msg afterDelayTime:(NSTimeInterval)delay;
+/// 显示文字,自定义消失时间
+/// @param msg 要显示的文字
+/// @param view 要显示的view
+/// @param delay 时间
++(void)showMsg:(nullable NSString *)msg onView:(nullable UIView *)view afterDelayTime:(NSTimeInterval)delay;
 
- @param msg msg
- @param view view
- */
-+(void)showLoadingWithMsg:(NSString *)msg onView:(UIView *)view;
 
-/**
- 显示加载中环形
+/// 成功提示(显示在window上)
+/// @param msg 要显示的文字
++(void)showSuccessWithMsg:(nullable NSString *)msg;
+/// 成功提示
+/// @param msg 要显示的文字
+/// @param view 要显示的view
++(void)showSuccessWithMsg:(nullable NSString *)msg onView:(nullable UIView *)view;
 
- @param msg msg
- @param view view
- */
-+(void)showCircleLoadingWithMsg:(NSString *)msg onView:(UIView *)view;
+/// 失败提示(显示在window上)
+/// @param msg 要显示的文字
++(void)showFailWithMsg:(nullable NSString *)msg;
+/// 失败提示
+/// @param msg 要显示的文字
+/// @param view 要显示的view
++(void)showFailWithMsg:(nullable NSString *)msg onView:(nullable UIView *)view;
 
-/**
- 隐藏
- */
+/// 自定义图片显示(显示在window上)
+/// @param msg 要显示的文字
+/// @param imageName 要显示的图片
++(void)showMsg:(nullable NSString *)msg imageName:(NSString *)imageName;
+/// 自定义图片显示
+/// @param msg 要显示的文字
+/// @param imageName 要显示的图片
+/// @param view 要显示的view
++(void)showMsg:(nullable NSString *)msg imageName:(NSString *)imageName onView:(nullable UIView *)view;
+
+
+/// 显示动画(显示在window上)
+/// @param msg 要显示的文字
+/// @param imgArry 帧动画数组
++(void)showCustomAnimationWithMsg:(nullable NSString *)msg withImageArry:(NSArray *)imgArry;
+/// 显示动画
+/// @param msg 要显示的文字
+/// @param imgArry 帧动画数组
+/// @param view 要显示的view
++(void)showCustomAnimationWithMsg:(nullable NSString *)msg withImageArry:(NSArray *)imgArry onView:(nullable UIView *)view;
+
+
+/// 显示下载上传进度(显示在window上)
+/// @param msg 要显示的文字
++(MBProgressHUD *)showProgressWithMsg:(nullable NSString *)msg;
+ /// 显示下载上传进度
+ /// @param msg 要显示的文字
+ /// @param view 要显示的view
++(MBProgressHUD *)showProgressWithMsg:(nullable NSString *)msg onView:(nullable UIView *)view;
+
+
+/// 显示正在加载菊花(显示在window上)
+/// @param msg 要显示的文字
++(void)showLoadingWithMsg:(nullable NSString *)msg;
+/// 显示正在加载菊花
+/// @param msg 要显示的文字
+/// @param view 要显示的view
++(void)showLoadingWithMsg:(nullable NSString *)msg onView:(nullable UIView *)view;
+
+
+/// 显示正在加载圆圈(显示在window上)
+/// @param msg 要显示的文字
++(void)showCircleLoadingWithMsg:(nullable NSString *)msg;
+/// 显示正在加载圆圈
+/// @param msg 要显示的文字
+/// @param view 要显示的view
++(void)showCircleLoadingWithMsg:(nullable NSString *)msg onView:(nullable UIView *)view;
+
+
+/// 隐藏
 + (void)hide;
 @end
 
