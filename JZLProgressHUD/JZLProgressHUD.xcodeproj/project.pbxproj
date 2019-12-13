@@ -30,6 +30,7 @@
 		93840A0A219440200030E11C /* 02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93840A062194401F0030E11C /* 02@2x.png */; };
 		93840A0B219440200030E11C /* 03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93840A072194401F0030E11C /* 03@2x.png */; };
 		93840A0C219440200030E11C /* 04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93840A08219440200030E11C /* 04@2x.png */; };
+		93E2B14823A36650000C7311 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E2B14723A36650000C7311 /* TestViewController.m */; };
 		B25A227946DE095BE43BAE1C /* libPods-JZLProgressHUDUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC90EC446CABE74FD14DD6A /* libPods-JZLProgressHUDUITests.a */; };
 		C5C72CC33008D0C9314AAE17 /* libPods-JZLProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EF0A8ABBA059338E1D5DFF7 /* libPods-JZLProgressHUD.a */; };
 /* End PBXBuildFile section */
@@ -88,6 +89,8 @@
 		93840A062194401F0030E11C /* 02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02@2x.png"; sourceTree = "<group>"; };
 		93840A072194401F0030E11C /* 03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03@2x.png"; sourceTree = "<group>"; };
 		93840A08219440200030E11C /* 04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "04@2x.png"; sourceTree = "<group>"; };
+		93E2B14623A36650000C7311 /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		93E2B14723A36650000C7311 /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		9A93C373490F99212B95D780 /* Pods-JZLProgressHUD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JZLProgressHUD.release.xcconfig"; path = "Pods/Target Support Files/Pods-JZLProgressHUD/Pods-JZLProgressHUD.release.xcconfig"; sourceTree = "<group>"; };
 		CBC90EC446CABE74FD14DD6A /* libPods-JZLProgressHUDUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JZLProgressHUDUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4C78DAE06A7759635D010C /* Pods-JZLProgressHUDUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JZLProgressHUDUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JZLProgressHUDUITests/Pods-JZLProgressHUDUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -152,6 +155,8 @@
 				938409642194183F0030E11C /* AppDelegate.m */,
 				938409662194183F0030E11C /* ViewController.h */,
 				938409672194183F0030E11C /* ViewController.m */,
+				93E2B14623A36650000C7311 /* TestViewController.h */,
+				93E2B14723A36650000C7311 /* TestViewController.m */,
 				938409692194183F0030E11C /* Main.storyboard */,
 				9384096C219418410030E11C /* Assets.xcassets */,
 				9384096E219418410030E11C /* LaunchScreen.storyboard */,
@@ -447,6 +452,7 @@
 				9384099821941A280030E11C /* JZLProgressHUD.m in Sources */,
 				93840973219418410030E11C /* main.m in Sources */,
 				938409652194183F0030E11C /* AppDelegate.m in Sources */,
+				93E2B14823A36650000C7311 /* TestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

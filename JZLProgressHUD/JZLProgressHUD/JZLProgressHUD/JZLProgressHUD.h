@@ -20,6 +20,18 @@ typedef NS_ENUM(NSInteger, JZLProgressHUDMode){
     JZLProgressHUDModeCustomerImage     // 自定义图片
 };
 
+/**
+ hud的样式
+
+ - gray_background_style: 灰色背景
+ - dim_background_style: 黑色背景
+ */
+typedef NS_ENUM(NSInteger, JZLProgressHUDStyle) {
+    
+    JZLProgressHUDStyleBlack = 0,
+    JZLProgressHUDStyleGray,
+};
+
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -27,93 +39,94 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JZLProgressHUD : NSObject
 @property (nonatomic,strong, nullable) MBProgressHUD  *hud;
+@property(nonatomic , assign)JZLProgressHUDStyle HUDStyle;
 /** 单例 */
-+(instancetype)shareinstance;
++(instancetype)shareInstance;
 
 
 /// 只显示文字(显示在window上)
-/// @param msg 要显示的文字
-+(void)showMsg:(nullable NSString *)msg;
+/// @param message 要显示的文字
++(void)showMessage:(nullable NSString *)message;
 /// 只显示文字
-/// @param msg 要显示的文字
+/// @param message 要显示的文字
 /// @param view   要显示的view
-+(void)showMsg:(nullable NSString *)msg onView:(nullable UIView *)view;
++(void)showMessage:(nullable NSString *)message onView:(nullable UIView *)view;
 
 
 /// 显示文字,自定义消失时间(显示在window上)
-/// @param msg 要显示的文字
+/// @param message 要显示的文字
 /// @param delay 时间
-+(void)showMsg:(nullable NSString *)msg afterDelayTime:(NSTimeInterval)delay;
++(void)showMessage:(nullable NSString *)message afterDelayTime:(NSTimeInterval)delay;
 /// 显示文字,自定义消失时间
-/// @param msg 要显示的文字
+/// @param message 要显示的文字
 /// @param view 要显示的view
 /// @param delay 时间
-+(void)showMsg:(nullable NSString *)msg onView:(nullable UIView *)view afterDelayTime:(NSTimeInterval)delay;
++(void)showMessage:(nullable NSString *)message onView:(nullable UIView *)view afterDelayTime:(NSTimeInterval)delay;
 
 
 /// 成功提示(显示在window上)
-/// @param msg 要显示的文字
-+(void)showSuccessWithMsg:(nullable NSString *)msg;
+/// @param message 要显示的文字
++(void)showSuccessWithMessage:(nullable NSString *)message;
 /// 成功提示
-/// @param msg 要显示的文字
+/// @param message 要显示的文字
 /// @param view 要显示的view
-+(void)showSuccessWithMsg:(nullable NSString *)msg onView:(nullable UIView *)view;
++(void)showSuccessWithMessage:(nullable NSString *)message onView:(nullable UIView *)view;
 
 /// 失败提示(显示在window上)
-/// @param msg 要显示的文字
-+(void)showFailWithMsg:(nullable NSString *)msg;
+/// @param message 要显示的文字
++(void)showFailWithMessage:(nullable NSString *)message;
 /// 失败提示
-/// @param msg 要显示的文字
+/// @param message 要显示的文字
 /// @param view 要显示的view
-+(void)showFailWithMsg:(nullable NSString *)msg onView:(nullable UIView *)view;
++(void)showFailWithMessage:(nullable NSString *)message onView:(nullable UIView *)view;
 
 /// 自定义图片显示(显示在window上)
-/// @param msg 要显示的文字
+/// @param message 要显示的文字
 /// @param imageName 要显示的图片
-+(void)showMsg:(nullable NSString *)msg imageName:(NSString *)imageName;
++(void)showMessage:(nullable NSString *)message imageName:(NSString *)imageName;
 /// 自定义图片显示
-/// @param msg 要显示的文字
+/// @param message 要显示的文字
 /// @param imageName 要显示的图片
 /// @param view 要显示的view
-+(void)showMsg:(nullable NSString *)msg imageName:(NSString *)imageName onView:(nullable UIView *)view;
++(void)showMessage:(nullable NSString *)message imageName:(NSString *)imageName onView:(nullable UIView *)view;
 
 
 /// 显示动画(显示在window上)
-/// @param msg 要显示的文字
+/// @param message 要显示的文字
 /// @param imgArry 帧动画数组
-+(void)showCustomAnimationWithMsg:(nullable NSString *)msg withImageArry:(NSArray *)imgArry;
++(void)showCustomAnimationWithMessage:(nullable NSString *)message withImageArry:(NSArray *)imgArry;
 /// 显示动画
-/// @param msg 要显示的文字
+/// @param message 要显示的文字
 /// @param imgArry 帧动画数组
 /// @param view 要显示的view
-+(void)showCustomAnimationWithMsg:(nullable NSString *)msg withImageArry:(NSArray *)imgArry onView:(nullable UIView *)view;
++(void)showCustomAnimationWithMessage:(nullable NSString *)message withImageArry:(NSArray *)imgArry onView:(nullable UIView *)view;
 
 
 /// 显示下载上传进度(显示在window上)
-/// @param msg 要显示的文字
-+(MBProgressHUD *)showProgressWithMsg:(nullable NSString *)msg;
+/// @param message 要显示的文字
++(MBProgressHUD *)showProgressWithMessage:(nullable NSString *)message;
  /// 显示下载上传进度
- /// @param msg 要显示的文字
+ /// @param message 要显示的文字
  /// @param view 要显示的view
-+(MBProgressHUD *)showProgressWithMsg:(nullable NSString *)msg onView:(nullable UIView *)view;
++(MBProgressHUD *)showProgressWithMessage:(nullable NSString *)message onView:(nullable UIView *)view;
 
 
 /// 显示正在加载菊花(显示在window上)
-/// @param msg 要显示的文字
-+(void)showLoadingWithMsg:(nullable NSString *)msg;
+/// @param message 要显示的文字
++(void)showLoadingWithMessage:(nullable NSString *)message;
 /// 显示正在加载菊花
-/// @param msg 要显示的文字
+/// @param message 要显示的文字
 /// @param view 要显示的view
-+(void)showLoadingWithMsg:(nullable NSString *)msg onView:(nullable UIView *)view;
++(void)showLoadingWithMessage:(nullable NSString *)message onView:(nullable UIView *)view;
 
 
 /// 显示正在加载圆圈(显示在window上)
-/// @param msg 要显示的文字
-+(void)showCircleLoadingWithMsg:(nullable NSString *)msg;
+/// @param message 要显示的文字
++(void)showCircleLoadingWithMessage:(nullable NSString *)message;
 /// 显示正在加载圆圈
-/// @param msg 要显示的文字
+/// @param message 要显示的文字
 /// @param view 要显示的view
-+(void)showCircleLoadingWithMsg:(nullable NSString *)msg onView:(nullable UIView *)view;
++(void)showCircleLoadingWithMessage:(nullable NSString *)message onView:(nullable UIView *)view;
 
 
 /// 隐藏
