@@ -144,56 +144,61 @@
 /// @param view 要显示的view
 +(void)showProgressWithMessage:(nullable NSString *)message progress:(double)progress onView:(nullable UIView *)view{
     if (view == nil) view = (UIView*)[UIApplication sharedApplication].delegate.window;
-    if ([JZLProgressHUD shareInstance].hud == nil) {
-        [JZLProgressHUD shareInstance].hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([JZLProgressHUD shareInstance].hud == nil) {
+            [JZLProgressHUD shareInstance].hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+        }
+        
+        [JZLProgressHUD shareInstance].hud.mode = MBProgressHUDModeAnnularDeterminate;
+        // 设置背景颜色
+        if ([JZLProgressHUD shareInstance].HUDStyle == JZLProgressHUDStyleBlack) {
+            [JZLProgressHUD shareInstance].hud.bezelView.color = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.8];
+            [JZLProgressHUD shareInstance].hud.contentColor = [UIColor whiteColor];
+            [JZLProgressHUD shareInstance].hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+        }else {
+            [JZLProgressHUD shareInstance].hud.contentColor = [UIColor blackColor];
+        }
+        [[JZLProgressHUD shareInstance].hud setMargin:20];
+        [[JZLProgressHUD shareInstance].hud setRemoveFromSuperViewOnHide:YES];
+        [JZLProgressHUD shareInstance].hud.detailsLabel.text = message == nil ? @"" : message;
+        [JZLProgressHUD shareInstance].hud.detailsLabel.font = [UIFont systemFontOfSize:16];
+        [JZLProgressHUD shareInstance].hud.progress = progress;
+        if (progress >= 1) {
+            [[JZLProgressHUD shareInstance].hud hideAnimated:YES];
+            [JZLProgressHUD shareInstance].hud = nil;
+        }
+    });
     
-    [JZLProgressHUD shareInstance].hud.mode = MBProgressHUDModeAnnularDeterminate;
-    // 设置背景颜色
-    if ([JZLProgressHUD shareInstance].HUDStyle == JZLProgressHUDStyleBlack) {
-        [JZLProgressHUD shareInstance].hud.bezelView.color = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.8];
-        [JZLProgressHUD shareInstance].hud.contentColor = [UIColor whiteColor];
-        [JZLProgressHUD shareInstance].hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-    }else {
-        [JZLProgressHUD shareInstance].hud.contentColor = [UIColor blackColor];
-    }
-    [[JZLProgressHUD shareInstance].hud setMargin:20];
-    [[JZLProgressHUD shareInstance].hud setRemoveFromSuperViewOnHide:YES];
-    [JZLProgressHUD shareInstance].hud.detailsLabel.text = message == nil ? @"" : message;
-    [JZLProgressHUD shareInstance].hud.detailsLabel.font = [UIFont systemFontOfSize:16];
-    [JZLProgressHUD shareInstance].hud.progress = progress;
-    if (progress >= 1) {
-        [[JZLProgressHUD shareInstance].hud hideAnimated:YES];
-        [JZLProgressHUD shareInstance].hud = nil;
-    }
 }
 /// 显示下载上传进度
 /// @param message 要显示的文字
 /// @param progress 进度
 +(void)showProgressWithMessage:(nullable NSString *)message progress:(double)progress {
     UIView *view = (UIView*)[UIApplication sharedApplication].delegate.window;
-    if ([JZLProgressHUD shareInstance].hud == nil) {
-        [JZLProgressHUD shareInstance].hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-    }
-    
-    [JZLProgressHUD shareInstance].hud.mode = MBProgressHUDModeAnnularDeterminate;
-    // 设置背景颜色
-    if ([JZLProgressHUD shareInstance].HUDStyle == JZLProgressHUDStyleBlack) {
-        [JZLProgressHUD shareInstance].hud.bezelView.color = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.8];
-        [JZLProgressHUD shareInstance].hud.contentColor = [UIColor whiteColor];
-        [JZLProgressHUD shareInstance].hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-    }else {
-        [JZLProgressHUD shareInstance].hud.contentColor = [UIColor blackColor];
-    }
-    [[JZLProgressHUD shareInstance].hud setMargin:20];
-    [[JZLProgressHUD shareInstance].hud setRemoveFromSuperViewOnHide:YES];
-    [JZLProgressHUD shareInstance].hud.detailsLabel.text = message == nil ? @"" : message;
-    [JZLProgressHUD shareInstance].hud.detailsLabel.font = [UIFont systemFontOfSize:16];
-    [JZLProgressHUD shareInstance].hud.progress = progress;
-    if (progress >= 1) {
-        [[JZLProgressHUD shareInstance].hud hideAnimated:YES];
-        [JZLProgressHUD shareInstance].hud = nil;
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([JZLProgressHUD shareInstance].hud == nil) {
+            [JZLProgressHUD shareInstance].hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+        }
+        
+        [JZLProgressHUD shareInstance].hud.mode = MBProgressHUDModeAnnularDeterminate;
+        // 设置背景颜色
+        if ([JZLProgressHUD shareInstance].HUDStyle == JZLProgressHUDStyleBlack) {
+            [JZLProgressHUD shareInstance].hud.bezelView.color = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.8];
+            [JZLProgressHUD shareInstance].hud.contentColor = [UIColor whiteColor];
+            [JZLProgressHUD shareInstance].hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+        }else {
+            [JZLProgressHUD shareInstance].hud.contentColor = [UIColor blackColor];
+        }
+        [[JZLProgressHUD shareInstance].hud setMargin:20];
+        [[JZLProgressHUD shareInstance].hud setRemoveFromSuperViewOnHide:YES];
+        [JZLProgressHUD shareInstance].hud.detailsLabel.text = message == nil ? @"" : message;
+        [JZLProgressHUD shareInstance].hud.detailsLabel.font = [UIFont systemFontOfSize:16];
+        [JZLProgressHUD shareInstance].hud.progress = progress;
+        if (progress >= 1) {
+            [[JZLProgressHUD shareInstance].hud hideAnimated:YES];
+            [JZLProgressHUD shareInstance].hud = nil;
+        }
+    });
 }
 
 
@@ -234,7 +239,7 @@
 
 - (void)setHUDStyle:(JZLProgressHUDStyle)HUDStyle {
     _HUDStyle = HUDStyle;
-
+    
 }
 
 
@@ -245,80 +250,84 @@
 }
 
 + (void)show:(nullable NSString *)message onView:(nullable UIView *)view hudMode:(JZLProgressHUDMode)hudMode customImgView:(UIImageView *)customImgView{
-    // 如果当前存在,则先消失
-    if ([JZLProgressHUD shareInstance].hud != nil) {
-        [[JZLProgressHUD shareInstance].hud hideAnimated:YES];
-        [JZLProgressHUD shareInstance].hud = nil;
-    }
     if (view == nil) view = (UIView*)[UIApplication sharedApplication].delegate.window;
-    [JZLProgressHUD shareInstance].hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-    // 设置背景颜色
-    if ([JZLProgressHUD shareInstance].HUDStyle == JZLProgressHUDStyleBlack) {
-        [JZLProgressHUD shareInstance].hud.bezelView.color = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.8];
-        [JZLProgressHUD shareInstance].hud.contentColor = [UIColor whiteColor];
-        [JZLProgressHUD shareInstance].hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-    }else {
-        [JZLProgressHUD shareInstance].hud.contentColor = [UIColor blackColor];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // 如果当前存在,则先消失
+        if ([JZLProgressHUD shareInstance].hud != nil) {
+            [[JZLProgressHUD shareInstance].hud hideAnimated:YES];
+            [JZLProgressHUD shareInstance].hud = nil;
+        }
+        
+        [JZLProgressHUD shareInstance].hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+        // 设置背景颜色
+        if ([JZLProgressHUD shareInstance].HUDStyle == JZLProgressHUDStyleBlack) {
+            [JZLProgressHUD shareInstance].hud.bezelView.color = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.8];
+            [JZLProgressHUD shareInstance].hud.contentColor = [UIColor whiteColor];
+            [JZLProgressHUD shareInstance].hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+        }else {
+            [JZLProgressHUD shareInstance].hud.contentColor = [UIColor blackColor];
+        }
+        
+        [[JZLProgressHUD shareInstance].hud setMargin:20];
+        [[JZLProgressHUD shareInstance].hud setRemoveFromSuperViewOnHide:YES];
+        [JZLProgressHUD shareInstance].hud.detailsLabel.text = message == nil ? @"" : message;
+        [JZLProgressHUD shareInstance].hud.detailsLabel.font = [UIFont systemFontOfSize:16];
+        switch (hudMode) {
+            case JZLProgressHUDModeTextOnly://只显示文字
+                [JZLProgressHUD shareInstance].hud.mode = MBProgressHUDModeText;
+                break;
+                
+            case JZLProgressHUDModeLoading://加载菊花
+                [JZLProgressHUD shareInstance].hud.mode = MBProgressHUDModeIndeterminate;
+                break;
+                
+            case JZLProgressHUDModeCircle:{//加载环形
+                [JZLProgressHUD shareInstance].hud.mode = MBProgressHUDModeCustomView;
+                UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loading"]];
+                CABasicAnimation *animation= [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+                animation.toValue = [NSNumber numberWithFloat:M_PI*2];
+                animation.duration = 1.0;
+                animation.repeatCount = 100;
+                [img.layer addAnimation:animation forKey:nil];
+                [JZLProgressHUD shareInstance].hud.customView = img;
+            }
+                break;
+                
+            case JZLProgressHUDModeCustomerImage://自定义图片
+                [JZLProgressHUD shareInstance].hud.mode = MBProgressHUDModeCustomView;
+                [JZLProgressHUD shareInstance].hud.customView = customImgView;
+                break;
+                
+            case JZLProgressHUDModeCustomAnimation://自定义帧动画
+                //这里设置动画的背景色
+                //            [JZLProgressHUD shareInstance].hud.bezelView.color = [UIColor whiteColor];
+                [JZLProgressHUD shareInstance].hud.mode = MBProgressHUDModeCustomView;
+                [JZLProgressHUD shareInstance].hud.customView = customImgView;
+                //            [JZLProgressHUD shareInstance].hud.detailsLabel.textColor = [UIColor blackColor];
+                break;
+                
+            case JZLProgressHUDModeSuccess:{
+                [JZLProgressHUD shareInstance].hud.mode = MBProgressHUDModeCustomView;
+                UIImageRenderingMode renderMode = [JZLProgressHUD shareInstance].HUDStyle == JZLProgressHUDStyleBlack ? UIImageRenderingModeAlwaysOriginal : UIImageRenderingModeAlwaysTemplate;
+                UIImage *image = [[UIImage imageNamed:@"success"] imageWithRenderingMode:renderMode];
+                UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
+                [JZLProgressHUD shareInstance].hud.customView = imgView;
+            }
+                break;
+                
+            case JZLProgressHUDModeFail:{
+                [JZLProgressHUD shareInstance].hud.mode = MBProgressHUDModeCustomView;
+                UIImageRenderingMode renderMode = [JZLProgressHUD shareInstance].HUDStyle == JZLProgressHUDStyleBlack ? UIImageRenderingModeAlwaysOriginal : UIImageRenderingModeAlwaysTemplate;
+                UIImage *image = [[UIImage imageNamed:@"fail"] imageWithRenderingMode:renderMode];
+                UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
+                [JZLProgressHUD shareInstance].hud.customView = imgView;
+            }
+                break;
+            default:
+                break;
+        }
+    });
     
-    [[JZLProgressHUD shareInstance].hud setMargin:20];
-    [[JZLProgressHUD shareInstance].hud setRemoveFromSuperViewOnHide:YES];
-    [JZLProgressHUD shareInstance].hud.detailsLabel.text = message == nil ? @"" : message;
-    [JZLProgressHUD shareInstance].hud.detailsLabel.font = [UIFont systemFontOfSize:16];
-    switch (hudMode) {
-        case JZLProgressHUDModeTextOnly://只显示文字
-            [JZLProgressHUD shareInstance].hud.mode = MBProgressHUDModeText;
-            break;
-            
-        case JZLProgressHUDModeLoading://加载菊花
-            [JZLProgressHUD shareInstance].hud.mode = MBProgressHUDModeIndeterminate;
-            break;
-            
-        case JZLProgressHUDModeCircle:{//加载环形
-            [JZLProgressHUD shareInstance].hud.mode = MBProgressHUDModeCustomView;
-            UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loading"]];
-            CABasicAnimation *animation= [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-            animation.toValue = [NSNumber numberWithFloat:M_PI*2];
-            animation.duration = 1.0;
-            animation.repeatCount = 100;
-            [img.layer addAnimation:animation forKey:nil];
-            [JZLProgressHUD shareInstance].hud.customView = img;
-        }
-            break;
-            
-        case JZLProgressHUDModeCustomerImage://自定义图片
-            [JZLProgressHUD shareInstance].hud.mode = MBProgressHUDModeCustomView;
-            [JZLProgressHUD shareInstance].hud.customView = customImgView;
-            break;
-            
-        case JZLProgressHUDModeCustomAnimation://自定义帧动画
-            //这里设置动画的背景色
-            //            [JZLProgressHUD shareInstance].hud.bezelView.color = [UIColor whiteColor];
-            [JZLProgressHUD shareInstance].hud.mode = MBProgressHUDModeCustomView;
-            [JZLProgressHUD shareInstance].hud.customView = customImgView;
-            //            [JZLProgressHUD shareInstance].hud.detailsLabel.textColor = [UIColor blackColor];
-            break;
-            
-        case JZLProgressHUDModeSuccess:{
-            [JZLProgressHUD shareInstance].hud.mode = MBProgressHUDModeCustomView;
-            UIImageRenderingMode renderMode = [JZLProgressHUD shareInstance].HUDStyle == JZLProgressHUDStyleBlack ? UIImageRenderingModeAlwaysOriginal : UIImageRenderingModeAlwaysTemplate;
-            UIImage *image = [[UIImage imageNamed:@"success"] imageWithRenderingMode:renderMode];
-            UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
-            [JZLProgressHUD shareInstance].hud.customView = imgView;
-        }
-            break;
-            
-        case JZLProgressHUDModeFail:{
-            [JZLProgressHUD shareInstance].hud.mode = MBProgressHUDModeCustomView;
-            UIImageRenderingMode renderMode = [JZLProgressHUD shareInstance].HUDStyle == JZLProgressHUDStyleBlack ? UIImageRenderingModeAlwaysOriginal : UIImageRenderingModeAlwaysTemplate;
-            UIImage *image = [[UIImage imageNamed:@"fail"] imageWithRenderingMode:renderMode];
-            UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
-            [JZLProgressHUD shareInstance].hud.customView = imgView;
-        }
-            break;
-        default:
-            break;
-    }
 }
 
 @end
