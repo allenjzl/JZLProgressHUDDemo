@@ -138,46 +138,62 @@
 }
 
 
-
-/// 显示下载上传进度(显示在window上)
+/// 显示下载上传进度
 /// @param message 要显示的文字
-+(MBProgressHUD *)showProgressWithMessage:(nullable NSString *)message{
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:(UIView*)[UIApplication sharedApplication].delegate.window animated:YES];
-    hud.mode = MBProgressHUDModeAnnularDeterminate;
+/// @param progress 进度
+/// @param view 要显示的view
++(void)showProgressWithMessage:(nullable NSString *)message progress:(double)progress onView:(nullable UIView *)view{
+    if (view == nil) view = (UIView*)[UIApplication sharedApplication].delegate.window;
+    if ([JZLProgressHUD shareInstance].hud == nil) {
+        [JZLProgressHUD shareInstance].hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    }
+    
+    [JZLProgressHUD shareInstance].hud.mode = MBProgressHUDModeAnnularDeterminate;
     // 设置背景颜色
     if ([JZLProgressHUD shareInstance].HUDStyle == JZLProgressHUDStyleBlack) {
-        hud.bezelView.color = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.8];
-        hud.contentColor = [UIColor whiteColor];
-        hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+        [JZLProgressHUD shareInstance].hud.bezelView.color = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.8];
+        [JZLProgressHUD shareInstance].hud.contentColor = [UIColor whiteColor];
+        [JZLProgressHUD shareInstance].hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     }else {
-        hud.contentColor = [UIColor blackColor];
+        [JZLProgressHUD shareInstance].hud.contentColor = [UIColor blackColor];
     }
-    [hud setMargin:20];
-    [hud setRemoveFromSuperViewOnHide:YES];
-    hud.detailsLabel.text = message == nil ? @"" : message;
-    hud.detailsLabel.font = [UIFont systemFontOfSize:16];
-    return hud;
+    [[JZLProgressHUD shareInstance].hud setMargin:20];
+    [[JZLProgressHUD shareInstance].hud setRemoveFromSuperViewOnHide:YES];
+    [JZLProgressHUD shareInstance].hud.detailsLabel.text = message == nil ? @"" : message;
+    [JZLProgressHUD shareInstance].hud.detailsLabel.font = [UIFont systemFontOfSize:16];
+    [JZLProgressHUD shareInstance].hud.progress = progress;
+    if (progress >= 1) {
+        [[JZLProgressHUD shareInstance].hud hideAnimated:YES];
+        [JZLProgressHUD shareInstance].hud = nil;
+    }
 }
 /// 显示下载上传进度
 /// @param message 要显示的文字
-/// @param view 要显示的view
-+(MBProgressHUD *)showProgressWithMessage:(nullable NSString *)message onView:(nullable UIView *)view{
-    if (view == nil) view = (UIView*)[UIApplication sharedApplication].delegate.window;
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-    hud.mode = MBProgressHUDModeAnnularDeterminate;
+/// @param progress 进度
++(void)showProgressWithMessage:(nullable NSString *)message progress:(double)progress {
+    UIView *view = (UIView*)[UIApplication sharedApplication].delegate.window;
+    if ([JZLProgressHUD shareInstance].hud == nil) {
+        [JZLProgressHUD shareInstance].hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    }
+    
+    [JZLProgressHUD shareInstance].hud.mode = MBProgressHUDModeAnnularDeterminate;
     // 设置背景颜色
     if ([JZLProgressHUD shareInstance].HUDStyle == JZLProgressHUDStyleBlack) {
-        hud.bezelView.color = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.8];
-        hud.contentColor = [UIColor whiteColor];
-        hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+        [JZLProgressHUD shareInstance].hud.bezelView.color = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.8];
+        [JZLProgressHUD shareInstance].hud.contentColor = [UIColor whiteColor];
+        [JZLProgressHUD shareInstance].hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     }else {
-        hud.contentColor = [UIColor blackColor];
+        [JZLProgressHUD shareInstance].hud.contentColor = [UIColor blackColor];
     }
-    [hud setMargin:20];
-    [hud setRemoveFromSuperViewOnHide:YES];
-    hud.detailsLabel.text = message == nil ? @"" : message;
-    hud.detailsLabel.font = [UIFont systemFontOfSize:16];
-    return hud;
+    [[JZLProgressHUD shareInstance].hud setMargin:20];
+    [[JZLProgressHUD shareInstance].hud setRemoveFromSuperViewOnHide:YES];
+    [JZLProgressHUD shareInstance].hud.detailsLabel.text = message == nil ? @"" : message;
+    [JZLProgressHUD shareInstance].hud.detailsLabel.font = [UIFont systemFontOfSize:16];
+    [JZLProgressHUD shareInstance].hud.progress = progress;
+    if (progress >= 1) {
+        [[JZLProgressHUD shareInstance].hud hideAnimated:YES];
+        [JZLProgressHUD shareInstance].hud = nil;
+    }
 }
 
 
@@ -206,8 +222,6 @@
     [self show:message onView:view hudMode:JZLProgressHUDModeCircle];
     
 }
-
-
 
 
 + (void)hide {

@@ -13,7 +13,6 @@
 
 @interface ViewController ()
 @property (nonatomic, strong) NSTimer *timer;
-@property (nonatomic, strong)  MBProgressHUD *hud;
 @property (nonatomic, assign) double progress;
 @end
 
@@ -67,9 +66,6 @@
             break;
             
         case 5:{// 下载进度
-//            self.hud = [JZLProgressHUD showProgressWithMessage:@"下载中..." onView:self.view];
-            self.hud = [JZLProgressHUD showProgressWithMessage:@"下载中..."];
-            self.progress = 0.0f;
            self.timer =  [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(downloadProgress) userInfo:nil repeats:YES];
             
         }
@@ -114,16 +110,14 @@
 
 - (void)downloadProgress {
     if (self.progress >= 1.0f) {
-        [self.hud hideAnimated:YES];
-        self.hud = nil;
         [self.timer invalidate];
         self.timer = nil;
+        self.progress = 0.0;
         
     }else {
         self.progress = self.progress + 0.1;
-        self.hud.progress = self.progress;
+        [JZLProgressHUD showProgressWithMessage:@"正在下载中" progress:self.progress onView:self.view];
     }
-
 }
 
 

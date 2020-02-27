@@ -102,13 +102,16 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)showCustomAnimationWithMessage:(nullable NSString *)message withImageArry:(NSArray *)imgArry onView:(nullable UIView *)view;
 
 
-/// 显示下载上传进度(显示在window上)
+/// 显示下载上传进度
 /// @param message 要显示的文字
-+(MBProgressHUD *)showProgressWithMessage:(nullable NSString *)message;
+/// @param progress 进度
++(void)showProgressWithMessage:(nullable NSString *)message progress:(double)progress;
+
  /// 显示下载上传进度
  /// @param message 要显示的文字
+ /// @param progress 进度
  /// @param view 要显示的view
-+(MBProgressHUD *)showProgressWithMessage:(nullable NSString *)message onView:(nullable UIView *)view;
++(void)showProgressWithMessage:(nullable NSString *)message progress:(double)progress onView:(nullable UIView *)view;
 
 
 /// 显示正在加载菊花(显示在window上)
