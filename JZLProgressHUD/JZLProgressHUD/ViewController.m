@@ -34,9 +34,14 @@
 
 - (void)btnAction:(UIButton *)sender {
     switch (sender.tag) {
-        case 0:// 显示提示文字
+        case 0:{// 显示提示文字
 //            [JZLProgressHUD showMessage:@"Hello World" onView:self.view];
-            [JZLProgressHUD showMessage:@"123"];
+            //在子线程更新UI测试,HUD会进入主线程显示,保证线程安全
+            dispatch_queue_t q = dispatch_queue_create("q", DISPATCH_QUEUE_CONCURRENT);
+            dispatch_async(q, ^{
+                [JZLProgressHUD showMessage:@"123"];
+            });
+        }
             break;
             
         case 1:// 显示提示文字(window上)
@@ -66,7 +71,7 @@
             break;
             
         case 5:{// 下载进度
-           self.timer =  [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(downloadProgress) userInfo:nil repeats:YES];
+            self.timer =  [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(downloadProgress) userInfo:nil repeats:YES];
             
         }
             break;
@@ -113,7 +118,6 @@
         [self.timer invalidate];
         self.timer = nil;
         self.progress = 0.0;
-        
     }else {
         self.progress = self.progress + 0.1;
         [JZLProgressHUD showProgressWithMessage:@"正在下载中" progress:self.progress onView:self.view];
